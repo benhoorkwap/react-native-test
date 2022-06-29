@@ -9,6 +9,8 @@ import {
   useWindowDimensions,
 } from 'react-native';
 
+import Pie from 'react-native-pie';
+
 import portfolioImage from '../assets/PorfolioImage.png';
 
 import {useDispatch} from 'react-redux';
@@ -21,8 +23,14 @@ export const PorfolioCarousel = ({data, style}) => {
   const windowWidth = useWindowDimensions().width;
   const initialScrollX = new Animated.Value(0);
 
-  const onViewRef = React.useRef(viewableItems => {
-    alert(viewableItems.index);
+  const onViewRef = React.useRef(params => {
+    console.log(params);
+    const {viewableItems, changed} = params;
+    console.log(viewableItems[0]);
+    const token = viewableItems[0];
+    if (token) {
+      dispatch(setVisiblePortfolio(token.item));
+    }
   });
   const viewConfigRef = React.useRef({
     waitForInteraction: true,
@@ -33,11 +41,52 @@ export const PorfolioCarousel = ({data, style}) => {
     return (
       <View style={[styles.carouselItemContainer, {width: windowWidth}]}>
         <Text style={styles.screenHeaderText}>{item.title}</Text>
-        <ImageBackground
-          source={portfolioImage}
-          style={styles.carouselItemImage}
-          resizeMode="cover"
-        />
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 72,
+          }}>
+          <Pie
+            radius={119}
+            innerRadius={75}
+            sections={[
+              {percentage: item.assetAllocation.voo, color: '#080d45'},
+              {percentage: item.assetAllocation.ijh, color: '#7982fa'},
+              {percentage: item.assetAllocation.Ijr, color: '#C2C7ff'},
+              {percentage: item.assetAllocation.ixus, color: '#1826D0'},
+            ]}
+            strokeCap={'butt'}></Pie>
+          <View
+            style={{
+              flexDirection: 'row',
+              backgroundColor: 'red',
+              alignContent: 'center',
+              width: 180,
+              marginTop: 16,
+            }}>
+            <Text
+              style={[
+                {backgroundColor: '#080d45'},
+                styles.percentageText,
+              ]}>{`${item.assetAllocation.voo}%`}</Text>
+            <Text
+              style={[
+                {backgroundColor: '#7982fa'},
+                styles.percentageText,
+              ]}>{`${item.assetAllocation.ijh}%`}</Text>
+            <Text
+              style={[
+                {backgroundColor: '#C2C7ff'},
+                styles.percentageText,
+              ]}>{`${item.assetAllocation.Ijr}%`}</Text>
+            <Text
+              style={[
+                {backgroundColor: '#1826D0'},
+                styles.percentageText,
+              ]}>{`${item.assetAllocation.ixus}%`}</Text>
+          </View>
+        </View>
       </View>
     );
   };
@@ -107,7 +156,6 @@ const styles = StyleSheet.create({
   carouselContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 300,
   },
 
   carouselItemContainer: {
@@ -145,5 +193,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Mulish-ExtraBold',
     position: 'absolute',
     top: 0,
+  },
+
+  percentageText: {
+    textAlign: 'center',
+    fontFamily: 'Mulish-Bold',
+    fontSize: 16,
+    color: 'white',
+    flex: 1,
   },
 });

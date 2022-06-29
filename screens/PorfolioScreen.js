@@ -13,16 +13,30 @@ import {Accordion, AccordionItem} from '../components/Accordion';
 import {Button} from '../components/Button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {PorfolioCarousel} from '../components/PortfolioCarousel';
+import Pie from 'react-native-pie';
 
 // Redux
 import {useSelector} from 'react-redux';
 
-const ListOptionItemWithIcon = ({title, icon, onPress}) => {
+const ListOptionItemWithIcon = ({title, iconPercentage, onPress}) => {
   return (
     <AccordionItem onPress={onPress} marginY={8}>
       <Text style={listOptionStyles.titleText}>{title}</Text>
       <View style={listOptionStyles.listOptionIcon}>
-        <Text style={listOptionStyles.iconText}>10%</Text>
+        <Pie
+          radius={18}
+          innerRadius={15}
+          sections={[{percentage: iconPercentage, color: '#7f18d0'}]}
+          backgroundColor="#ddd"
+        />
+        <View
+          style={{
+            position: 'absolute',
+            alignContent: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text style={styles.iconText}>{iconPercentage}</Text>
+        </View>
       </View>
     </AccordionItem>
   );
@@ -38,19 +52,12 @@ const listOptionStyles = StyleSheet.create({
   listOptionIcon: {
     width: 32,
     height: 32,
-    borderWidth: 4,
-    borderRightColor: '#edeef7',
-    borderTopColor: '#1826D0',
-    borderBottomColor: '#edeef7',
-    borderLeftColor: '#1826D0',
-    borderRadius: 16,
-    transform: [{rotate: '-90deg'}],
     alignItems: 'center',
     justifyContent: 'center',
+    marginRight: 4,
   },
 
   iconText: {
-    transform: [{rotate: '90deg'}],
     fontSize: 8,
     textAlign: 'center',
     alignSelf: 'center',
@@ -76,19 +83,43 @@ const PortfolioScreen = ({navigation}) => {
     },
     {
       id: 2,
-      title: 'Aggressive Portfolio',
+      title: 'Moderate Portfolio',
+      assetAllocation: {
+        voo: 35,
+        ijh: 25,
+        Ijr: 20,
+        ixus: 20,
+      },
     },
     {
       id: 3,
-      title: 'Aggressive Portfolio',
+      title: 'Defensive Portfolio',
+      assetAllocation: {
+        voo: 10,
+        ijh: 45,
+        Ijr: 15,
+        ixus: 30,
+      },
     },
     {
       id: 4,
-      title: 'Aggressive Portfolio',
+      title: 'Speculative Portfolio',
+      assetAllocation: {
+        voo: 15,
+        ijh: 25,
+        Ijr: 25,
+        ixus: 35,
+      },
     },
     {
       id: 5,
-      title: 'Aggressive Portfolio',
+      title: 'Some Portfolio',
+      assetAllocation: {
+        voo: 40,
+        ijh: 20,
+        Ijr: 15,
+        ixus: 25,
+      },
     },
   ]);
 
@@ -116,10 +147,6 @@ const PortfolioScreen = ({navigation}) => {
             </View>
           </RowSection>
 
-          <RowSection>
-            <Text>{portfolio.title}</Text>
-          </RowSection>
-
           {/* <RowSection>
             <Text style={styles.screenHeaderText}>Aggressive Portfolio</Text>
           </RowSection> */}
@@ -138,10 +165,22 @@ const PortfolioScreen = ({navigation}) => {
 
           <RowSection marginTop={8}>
             <Accordion>
-              <ListOptionItemWithIcon title="Large Company Stocks (VOO)" />
-              <ListOptionItemWithIcon title="Medium Company Stocks (VOO)" />
-              <ListOptionItemWithIcon title="Small Company Stocks (VOO)" />
-              <ListOptionItemWithIcon title="International Company Stocks (VOO)" />
+              <ListOptionItemWithIcon
+                title="Large Company Stocks (VOO)"
+                iconPercentage={portfolio.assetAllocation.voo}
+              />
+              <ListOptionItemWithIcon
+                title="Medium Company Stocks (VOO)"
+                iconPercentage={portfolio.assetAllocation.ijh}
+              />
+              <ListOptionItemWithIcon
+                title="Small Company Stocks (VOO)"
+                iconPercentage={portfolio.assetAllocation.Ijr}
+              />
+              <ListOptionItemWithIcon
+                title="International Company Stocks (VOO)"
+                iconPercentage={portfolio.assetAllocation.ixus}
+              />
             </Accordion>
           </RowSection>
 

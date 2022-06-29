@@ -4,7 +4,14 @@ export const portfolioSlice = createSlice({
   name: 'portfolio',
   initialState: {
     visiblePortfolio: {
-      title: '',
+      id: 1,
+      title: 'Aggressive Portfolio',
+      assetAllocation: {
+        voo: 55,
+        ijh: 10,
+        Ijr: 5,
+        ixus: 30,
+      },
     },
   },
   reducers: {
