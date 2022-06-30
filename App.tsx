@@ -10,18 +10,18 @@ import React from 'react';
 import type {Node} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Text, View} from 'react-native';
 
 // Screens
 import StockScreen from './screens/StockScreen';
 import FamilyPlusScreen from './screens/FamilyPlusScreen.js';
 import PortfolioScreen from './screens/PorfolioScreen';
-import {useState} from 'react';
-import useFonts from './hooks/useFonts';
+ 
 
 // Redux
 import store from './redux/store/store';
 import {Provider} from 'react-redux';
+
+
 
 const Stack = createNativeStackNavigator();
 

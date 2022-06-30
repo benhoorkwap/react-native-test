@@ -6,48 +6,30 @@ import {
   FlatList,
   Animated,
   useWindowDimensions,
-  TouchableOpacity,
+  ListRenderItemInfo,
 } from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import fpImage from '../assets/FamilyPlusBackground.png';
 import * as utils from '../utils/utils';
+import {CarouselProps, FamilyCarouselDataType} from '../utils/types';
 
 import {CardButton} from './Button';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-const FamilyPlusCarousel = ({items}) => {
+const FamilyPlusCarousel = ({data}: CarouselProps<FamilyCarouselDataType>) => {
   const windowWidth = useWindowDimensions().width;
   const initialScrollX = new Animated.Value(0);
-  const [data, SetData] = useState([
-    {
-      title: 'Total Balance',
-      amount: 4500.0,
-      currency: 'USD',
-    },
-    {
-      title: 'Round-ups',
-      amount: 500.0,
-      currency: 'USD',
-    },
-    {
-      title: 'Term Savings',
-      amount: 1500.0,
-      currency: 'USD',
-    },
-    {
-      title: 'Stocks',
-      amount: 2500.0,
-      currency: 'USD',
-    },
-  ]);
 
-  const _renderItem = ({item, index}) => {
+  const _renderItem = ({
+    item,
+    index,
+  }: ListRenderItemInfo<FamilyCarouselDataType>) => {
     return (
       <View style={[styles.carouselItemContainer, {width: windowWidth}]}>
         <ImageBackground source={fpImage} style={styles.imageBackgroundStyle}>
           <Text style={styles.amountText}>
-            {utils.formatAmountToString(item.amount, item.current)}
+            {utils.formatAmountToString(item.amount, item.currency)}
           </Text>
           <Text style={styles.titleText}>{item.title}</Text>
           {index === 0 && (

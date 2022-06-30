@@ -1,32 +1,31 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {
   Text,
-  ImageBackground,
   StyleSheet,
   View,
   FlatList,
   Animated,
   useWindowDimensions,
+  ListRenderItemInfo,
 } from 'react-native';
 
 import Pie from 'react-native-pie';
 
-import portfolioImage from '../assets/PorfolioImage.png';
-
-import {useDispatch} from 'react-redux';
 import {setVisiblePortfolio} from '../redux/features/portfolioSlicer';
+import {CarouselProps} from '../utils/types';
+import {useAppDispatch} from '../redux/hooks/hooks';
+
+import {PortfolioDataType} from '../utils/types';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-export const PorfolioCarousel = ({data, style}) => {
-  const dispatch = useDispatch();
+export const PorfolioCarousel = ({data}: CarouselProps<PortfolioDataType>) => {
+  const dispatch = useAppDispatch();
   const windowWidth = useWindowDimensions().width;
   const initialScrollX = new Animated.Value(0);
 
   const onViewRef = React.useRef(params => {
-    console.log(params);
-    const {viewableItems, changed} = params;
-    console.log(viewableItems[0]);
+    const {viewableItems} = params;
     const token = viewableItems[0];
     if (token) {
       dispatch(setVisiblePortfolio(token.item));
@@ -37,7 +36,7 @@ export const PorfolioCarousel = ({data, style}) => {
     itemVisiblePercentThreshold: 75,
   });
 
-  const _renderItem = ({item}) => {
+  const _renderItem = ({item}: ListRenderItemInfo<PortfolioDataType>) => {
     return (
       <View style={[styles.carouselItemContainer, {width: windowWidth}]}>
         <Text style={styles.screenHeaderText}>{item.title}</Text>
@@ -91,7 +90,7 @@ export const PorfolioCarousel = ({data, style}) => {
     );
   };
 
-  const handleViewableItemsChanged = ({viewableItems, changed}) => {
+  const handleViewableItemsChanged = ({viewableItems}) => {
     viewableItems.forEach(token => {
       if (token.isViewable) {
         const item = data[token.index];
@@ -103,7 +102,7 @@ export const PorfolioCarousel = ({data, style}) => {
   };
 
   return (
-    <View style={[styles.carouselContainer, style, {width: windowWidth}]}>
+    <View style={[styles.carouselContainer, {width: windowWidth}]}>
       <View style={styles.carouselIndicatorContainer}>
         {data.map((item, index) => {
           const backgroundColor = initialScrollX.interpolate({

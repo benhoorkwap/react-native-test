@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {Image} from 'react-native';
 import projectionCard from '../assets/projection-card.png';
 

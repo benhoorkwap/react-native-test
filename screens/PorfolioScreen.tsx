@@ -2,73 +2,23 @@ import {
   View,
   StyleSheet,
   Text,
-  Image,
   SafeAreaView,
   StatusBar,
   ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
-import {RowSection, FlexibleRow} from '../components/RowSection';
-import {Accordion, AccordionItem} from '../components/Accordion';
+import {RowSection} from '../components/RowSection';
 import {Button} from '../components/Button';
+import {Accordion} from '../components/Accordion';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {PorfolioCarousel} from '../components/PortfolioCarousel';
-import Pie from 'react-native-pie';
+import ListOptionItemWithIcon from '../components/ListOptionItemWithIcon';
 
 // Redux
-import {useSelector} from 'react-redux';
-
-const ListOptionItemWithIcon = ({title, iconPercentage, onPress}) => {
-  return (
-    <AccordionItem onPress={onPress} marginY={8}>
-      <Text style={listOptionStyles.titleText}>{title}</Text>
-      <View style={listOptionStyles.listOptionIcon}>
-        <Pie
-          radius={18}
-          innerRadius={15}
-          sections={[{percentage: iconPercentage, color: '#7f18d0'}]}
-          backgroundColor="#ddd"
-        />
-        <View
-          style={{
-            position: 'absolute',
-            alignContent: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text style={styles.iconText}>{iconPercentage}</Text>
-        </View>
-      </View>
-    </AccordionItem>
-  );
-};
-
-const listOptionStyles = StyleSheet.create({
-  titleText: {
-    fontSize: 14,
-    lineHeight: 18,
-    fontWeight: '600',
-    fontFamily: 'Mulish-Bold',
-  },
-  listOptionIcon: {
-    width: 32,
-    height: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 4,
-  },
-
-  iconText: {
-    fontSize: 8,
-    textAlign: 'center',
-    alignSelf: 'center',
-    fontWeight: 'bold',
-    fontFamily: 'Mulish-ExtraBold',
-  },
-});
+import {useAppSelector} from '../redux/hooks/hooks';
 
 const PortfolioScreen = ({navigation}) => {
-  const [isSelected, SetIsSelected] = useState(false);
-  const portfolio = useSelector(state => state.portfolio.visiblePortfolio);
+  const portfolio = useAppSelector(state => state.portfolio.visiblePortfolio);
 
   const [data, SetData] = useState([
     {

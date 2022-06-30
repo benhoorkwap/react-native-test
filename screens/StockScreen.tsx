@@ -6,14 +6,13 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native';
-import {Button, IconButton} from '../components/Button';
+import {Button} from '../components/Button';
 import {HomeScreenCarousel} from '../components/Carousel';
 import {useState} from 'react';
 import coinAmecoImage from '../assets/coin-ameco.png';
 import {RowSection} from '../components/RowSection';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-// Todo: It seems this returns a modal. Not sure
 const StockScreen = ({navigation}) => {
   // mock data items to use for the carousel component.
   // Todo: Fetch real data from api and pass it to the carousel component
@@ -63,7 +62,6 @@ const StockScreen = ({navigation}) => {
             <Button
               title="Get Started"
               variant="primary"
-              style={styles.getStarteButton}
             />
           </RowSection>
         </ScrollView>

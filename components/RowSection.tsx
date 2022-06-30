@@ -1,7 +1,12 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import {RowSectionProps, FlexibleRowProps} from '../utils/types';
 
-export const RowSection = ({children, fullWidth, marginTop}) => {
+export const RowSection = ({
+  children,
+  fullWidth,
+  marginTop,
+}: RowSectionProps) => {
   return (
     <View
       style={[
@@ -18,7 +23,7 @@ export const FlexibleRow = ({
   fullWidth,
   flexDirection,
   marginTop,
-}) => {
+}: FlexibleRowProps) => {
   return (
     <View
       style={{
@@ -42,6 +47,11 @@ export const FlexibleRow = ({
 
 const styles = StyleSheet.create({
   rowSection: {
+    justifyContent: 'center',
+  },
+
+  flexibleRowSection: {
+    alignItems: 'center',
     justifyContent: 'center',
   },
 });

@@ -1,12 +1,13 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {ButtonProps} from '../utils/types';
 
 // CustomButton Component
 // The CustomButton element takes in two properties: title and styles.
 // The computed style for the custom button applies the styles passed in as prop in addition to the `defaultButtonStyle`.
-const CustomButton = ({title, styles, textFontStyles}) => {
+const CustomButton = ({title, style}: ButtonProps) => {
   return (
-    <TouchableOpacity style={[customButtonStyles.defaultBtnStyles, styles]}>
+    <TouchableOpacity style={[customButtonStyles.defaultBtnStyles, style]}>
       <Text style={[customButtonStyles.defaultTxtStyles]}>{title}</Text>
     </TouchableOpacity>
   );
