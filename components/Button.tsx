@@ -1,9 +1,10 @@
 import React from 'react';
+import {View} from 'react-native';
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+import {ButtonProps, IconButtonProps} from '../utils/types';
 //
-export const Button = ({title, variant, onPress, style}) => {
+
+export const Button = ({title, variant, onPress, style}: ButtonProps) => {
   return (
     <TouchableOpacity
       style={[styles.button, styles[variant], style]}
@@ -14,15 +15,33 @@ export const Button = ({title, variant, onPress, style}) => {
 };
 
 // Icon Button
-export const IconButton = ({name, onPress, style}) => {
+// export const IconButton = ({name, onPress, style}: IconButtonProps) => {
+//   return (
+//     <TouchableOpacity style={[styles.iconButton, style]} onPress={onPress}>
+//       <Icon name={name} size={16} color="#373F41" />
+//     </TouchableOpacity>
+//   );
+// };
+
+export const IconButton = ({icon, onPress}: IconButtonProps) => {
   return (
-    <TouchableOpacity style={[styles.iconButton, style]} onPress={onPress}>
-      <Icon name={name} size={16} color="#373F41" />
+    <TouchableOpacity onPress={onPress}>
+      <View
+        style={{
+          borderRadius: 20,
+          backgroundColor: '#f2e1ff',
+          width: 40,
+          height: 40,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Image source={{uri: icon}} style={{width: 24, height: 24}}></Image>
+      </View>
     </TouchableOpacity>
   );
 };
 
-export const CardButton = ({title, onPress, style}) => {
+export const CardButton = ({title, style}: ButtonProps) => {
   return (
     <TouchableOpacity style={[cardButtonStyles.cardButtonContainer, style]}>
       <Text style={cardButtonStyles.cardButtonText}>{title}</Text>

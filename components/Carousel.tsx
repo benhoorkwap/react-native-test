@@ -7,15 +7,21 @@ import {
   FlatList,
   Animated,
   useWindowDimensions,
+  ListRenderItemInfo,
 } from 'react-native';
+
+import {HomeScreenCarouselProps, HomeCarouselDataType} from '../utils/types';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-export const HomeScreenCarousel = ({data, style}) => {
+export const HomeScreenCarousel = ({
+  data,
+  style,
+}: HomeScreenCarouselProps<HomeCarouselDataType>) => {
   const windowWidth = useWindowDimensions().width;
   const initialScrollX = new Animated.Value(0);
 
-  const _renderItem = ({item}) => {
+  const _renderItem = ({item}: ListRenderItemInfo<any>) => {
     return (
       <View style={[styles.carouselItemContainer, {width: windowWidth}]}>
         <Image

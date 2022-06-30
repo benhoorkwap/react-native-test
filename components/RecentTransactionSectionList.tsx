@@ -4,37 +4,26 @@ import {
   Text,
   View,
   StyleSheet,
+  ListRenderItemInfo,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomButton from './CustomButton';
 
-const RecentTransactionSectionList = () => {
-  const [transactions, SetTransactions] = useState([
-    {
-      name: 'One Time Investment',
-      amount: 20.0,
-      status: 'Processing',
-      transactionID: 1,
-    },
-    {
-      name: 'Withdrawal',
-      amount: -8.0,
-      status: 'Processing',
-      transactionID: 2,
-    },
-    {
-      name: 'Round-up Investment',
-      amount: 10.36,
-      status: 'Processing',
-      transactionID: 3,
-    },
-  ]);
+import {
+  RectionTransactionDataType,
+  TransactionSectionProps,
+} from '../utils/types';
 
+const RecentTransactionSectionList = (
+  transactions: TransactionSectionProps<RectionTransactionDataType>,
+) => {
   /**Todo: Define UseEffect to fetch recent transactions from the server */
 
   // Function to be passed to the FlatList.renderItem property.
-  const renderItem = ({item}) => (
+  const renderItem = ({
+    item,
+  }: ListRenderItemInfo<RectionTransactionDataType>) => (
     <TouchableHighlight key={item.transactionID}>
       <View
         style={{flexDirection: 'row', height: 65, backgroundColor: '#fdfdfd'}}>
@@ -86,7 +75,7 @@ const RecentTransactionSectionList = () => {
   const ListFooter = () => (
     <CustomButton
       title={'View all'}
-      styles={{
+      style={{
         width: '100%',
         backgroundColor: '#7f19D0',
         height: 50,

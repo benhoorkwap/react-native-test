@@ -5,14 +5,17 @@ import {
   View,
   Image,
   StyleSheet,
+  ListRenderItemInfo,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React, {useState} from 'react';
 
+// Images
 import moneyIcon from '../assets/money.png';
 import userIcon from '../assets/3User.png';
 import rotateRightIcon from '../assets/rotate-right.png';
 import walletMinus from '../assets/wallet-minus.png';
+
+import {FaqListDataType} from '../utils/types';
 
 const FaqsSectionList = () => {
   const [data, SetData] = useState([
@@ -56,7 +59,7 @@ const FaqsSectionList = () => {
     </View>
   );
 
-  const renderItem = ({item}) => (
+  const renderItem = ({item}: ListRenderItemInfo<FaqListDataType>) => (
     <TouchableHighlight key={item.id}>
       <View
         style={{
@@ -75,7 +78,7 @@ const FaqsSectionList = () => {
             justifyContent: 'center',
             marginHorizontal: 12,
           }}>
-          <Image source={item.icon} style={{width: 12, height: 12}} />
+          <Image source={{uri: item.icon}} style={{width: 12, height: 12}} />
         </View>
         <Text style={styles.faqItemText}>{item.title}</Text>
       </View>

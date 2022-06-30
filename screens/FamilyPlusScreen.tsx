@@ -2,14 +2,12 @@ import {
   View,
   StyleSheet,
   Text,
-  Image,
-  TouchableOpacity,
   SafeAreaView,
   StatusBar,
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Accordion, AccordionItem} from '../components/Accordion';
+import {Accordion} from '../components/Accordion';
 import React, {useState} from 'react';
 
 // Import Screen Components here
@@ -18,78 +16,66 @@ import FamilyPlusCarousel from '../components/FamilyPlusCarousel';
 import RecentTransactionSectionList from '../components/RecentTransactionSectionList';
 import {ProjectionCard} from '../components/Card';
 import FaqsSectionList from '../components/FaqsSectionList';
+import ListOptionItem from '../components/ListOptionItem';
+import CategoryItem from '../components/CategoryItem';
 
 import moneyUpright from '../assets/money-upright.png';
 import userIcon from '../assets/user.png';
 import rotatedMoney from '../assets/money-rotated.png';
 
-const IconButton = ({icon, onPress}) => {
-  return (
-    <TouchableOpacity onPress={onPress}>
-      <View
-        style={{
-          borderRadius: 20,
-          backgroundColor: '#f2e1ff',
-          width: 40,
-          height: 40,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Image source={icon} style={{width: 24, height: 24}}></Image>
-      </View>
-    </TouchableOpacity>
-  );
-};
 
-const CategoryItem = ({label, icon, onPress}) => {
-  return (
-    <>
-      <IconButton icon={icon} onPress={onPress}></IconButton>
-      <Text
-        style={{
-          width: '100%',
-          textAlign: 'center',
-          fontSize: 12,
-          lineHeight: 15,
-          marginTop: 4,
-        }}>
-        {label}
-      </Text>
-    </>
-  );
-};
 
-const ListOptionItem = ({title, selectedOption, onPress}) => {
-  return (
-    <AccordionItem onPress={onPress}>
-      <Text style={listOptionStyles.titleText}>{title}</Text>
-      <Text style={listOptionStyles.optionText}>{selectedOption}</Text>
-    </AccordionItem>
-  );
-};
-
-const listOptionStyles = StyleSheet.create({
-  titleText: {
-    fontSize: 14,
-    lineHeight: 18,
-    fontWeight: '600',
-    fontFamily: 'Mulish-Bold',
-  },
-  optionText: {
-    fontSize: 14,
-    lineHeight: 18,
-    fontWeight: '600',
-    color: '#7f18d0',
-    fontFamily: 'Mulish-Bold',
-  },
-});
-
+// FamilyPlusScreen
 const FamilyPlusScreen = ({navigation}) => {
   const [portfolio, SetPortfolio] = useState('Aggressive');
   const [roundUpSettings, SetRoundUpSettings] = useState('Automatic');
   const [recurring, SetRecurring] = useState('$20/monthly');
   const [beneficiary, SetBeneficiary] = useState('1 Child');
   const [oneTimeInvestment, SetOneTimeInvestment] = useState('');
+
+  const [data, SetData] = useState([
+    {
+      title: 'Total Balance',
+      amount: 4500.0,
+      currency: 'USD',
+    },
+    {
+      title: 'Round-ups',
+      amount: 500.0,
+      currency: 'USD',
+    },
+    {
+      title: 'Term Savings',
+      amount: 1500.0,
+      currency: 'USD',
+    },
+    {
+      title: 'Stocks',
+      amount: 2500.0,
+      currency: 'USD',
+    },
+  ]);
+
+  const [transactions, SetTransactions] = useState([
+    {
+      name: 'One Time Investment',
+      amount: 20.0,
+      status: 'Processing',
+      transactionID: 1,
+    },
+    {
+      name: 'Withdrawal',
+      amount: -8.0,
+      status: 'Processing',
+      transactionID: 2,
+    },
+    {
+      name: 'Round-up Investment',
+      amount: 10.36,
+      status: 'Processing',
+      transactionID: 3,
+    },
+  ]);
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -108,11 +94,11 @@ const FamilyPlusScreen = ({navigation}) => {
 
           {/** Account Carousel */}
           <RowSection fullWidth={true} marginTop={18}>
-            <FamilyPlusCarousel />
+            <FamilyPlusCarousel data={data} />
           </RowSection>
 
           {/** Investion Options */}
-          <FlexibleRow marginTop={33}>
+          <FlexibleRow marginTop={33} flexDirection="row">
             <CategoryItem
               label="FamilyPlus Savings"
               icon={moneyUpright}
@@ -166,7 +152,7 @@ const FamilyPlusScreen = ({navigation}) => {
 
           {/** Recent Transaction Section */}
           <RowSection marginTop={33}>
-            <RecentTransactionSectionList />
+            <RecentTransactionSectionList transactions={transactions} />
           </RowSection>
 
           {/** Projection Card Section */}

@@ -1,18 +1,17 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableHighlight,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {AccordionItemProps, AccordionProps} from '../utils/types';
 
 // This should be used inside <Accordion> component.
 // It outputs variable components in addition to chevron-right icon
 // Default size of the Icon: 54 by 100% width
 // Default Icon size is 16px
-export const AccordionItem = ({children, onPress, marginY}) => {
+export const AccordionItem = ({
+  children,
+  onPress,
+  marginY,
+}: AccordionItemProps) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View
@@ -45,7 +44,7 @@ export const AccordionItem = ({children, onPress, marginY}) => {
             )
           )
         }
-        <View style={styles.accordionItemIcon}>
+        <View>
           <Icon name="chevron-right" size={16} color="#888789" />
         </View>
       </View>
@@ -60,7 +59,7 @@ export const AccordionItem = ({children, onPress, marginY}) => {
 //          <Text>Aggressive<Text>
 //      </AccordionItem>
 //  </Accordion>
-export const Accordion = ({children}) => {
+export const Accordion = ({children}: AccordionProps) => {
   return <View style={styles.accordionContainer}>{children}</View>;
 };
 
