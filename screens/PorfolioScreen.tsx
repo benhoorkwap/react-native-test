@@ -17,10 +17,15 @@ import ListOptionItemWithIcon from '../components/ListOptionItemWithIcon';
 // Redux
 import {useAppSelector} from '../redux/hooks/hooks';
 
-const PortfolioScreen = ({navigation}) => {
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {NavStackParamList} from '../utils/types';
+
+type NavProps = NativeStackScreenProps<NavStackParamList, 'Portfolio'>;
+
+const PortfolioScreen = ({navigation}: NavProps) => {
   const portfolio = useAppSelector(state => state.portfolio.visiblePortfolio);
 
-  const [data, SetData] = useState([
+  const [data] = useState([
     {
       id: 1,
       title: 'Aggressive Portfolio',

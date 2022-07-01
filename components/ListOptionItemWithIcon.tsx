@@ -1,4 +1,5 @@
-import {View, Text} from 'react-native';
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import Pie from 'react-native-pie';
 import {AccordionItem} from '../components/Accordion';
 import {ListOptionItemWithIconProps} from '../utils/types';
@@ -18,13 +19,8 @@ const ListOptionItemWithIcon = ({
           sections={[{percentage: iconPercentage, color: '#7f18d0'}]}
           backgroundColor="#ddd"
         />
-        <View
-          style={{
-            position: 'absolute',
-            alignContent: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text style={styles.iconText}>{iconPercentage}</Text>
+        <View style={listOptionStyles.iconContainer}>
+          <Text style={listOptionStyles.iconText}>{iconPercentage}</Text>
         </View>
       </View>
     </AccordionItem>
@@ -52,6 +48,12 @@ const listOptionStyles = StyleSheet.create({
     alignSelf: 'center',
     fontWeight: 'bold',
     fontFamily: 'Mulish-ExtraBold',
+  },
+
+  iconContainer: {
+    position: 'absolute',
+    alignContent: 'center',
+    justifyContent: 'center',
   },
 });
 

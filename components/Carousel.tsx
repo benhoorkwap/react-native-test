@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
   carouselTitleText: {
     height: 'auto',
     width: '76.27%' /* Corresponding to 286px for a 375px wide screen */,
-    fontFamily: 'Mulish-Bold',
     fontWeight: '700',
     fontSize: 24,
     lineHeight: 36,
@@ -112,7 +111,6 @@ const styles = StyleSheet.create({
   carouselDescText: {
     height: 'auto',
     width: '76.27%' /* Corresponding to 286px for a 375px wide screen */,
-    fontFamily: 'Mulish',
     fontWeight: '400',
     fontSize: 14,
     lineHeight: 21,

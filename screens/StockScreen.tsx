@@ -13,10 +13,15 @@ import coinAmecoImage from '../assets/coin-ameco.png';
 import {RowSection} from '../components/RowSection';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const StockScreen = ({navigation}) => {
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {NavStackParamList} from '../utils/types';
+
+type NavProps = NativeStackScreenProps<NavStackParamList, 'InvestInStock'>;
+
+const StockScreen = ({navigation}: NavProps) => {
   // mock data items to use for the carousel component.
   // Todo: Fetch real data from api and pass it to the carousel component
-  const [items, SetItems] = useState([
+  const [items] = useState([
     {
       title: '3KLE invests your money intelligently in stocks',
       description:
@@ -38,7 +43,7 @@ const StockScreen = ({navigation}) => {
   ]);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={styles.container}>
       <StatusBar barStyle={'dark-content'} />
       <View style={styles.screenContainer}>
         <ScrollView>
@@ -59,10 +64,7 @@ const StockScreen = ({navigation}) => {
 
           {/** GetStarted Primary Button */}
           <RowSection marginTop={15}>
-            <Button
-              title="Get Started"
-              variant="primary"
-            />
+            <Button title="Get Started" variant="primary" />
           </RowSection>
         </ScrollView>
       </View>
@@ -71,6 +73,10 @@ const StockScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
   screenContainer: {
     flex: 1,
     alignItems: 'center',
