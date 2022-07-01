@@ -22,18 +22,20 @@ import CategoryItem from '../components/CategoryItem';
 import moneyUpright from '../assets/money-upright.png';
 import userIcon from '../assets/user.png';
 import rotatedMoney from '../assets/money-rotated.png';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {NavStackParamList} from '../utils/types';
 
-
+type NavProps = NativeStackScreenProps<NavStackParamList, 'FamilyPlus'>;
 
 // FamilyPlusScreen
-const FamilyPlusScreen = ({navigation}) => {
-  const [portfolio, SetPortfolio] = useState('Aggressive');
-  const [roundUpSettings, SetRoundUpSettings] = useState('Automatic');
-  const [recurring, SetRecurring] = useState('$20/monthly');
-  const [beneficiary, SetBeneficiary] = useState('1 Child');
-  const [oneTimeInvestment, SetOneTimeInvestment] = useState('');
+const FamilyPlusScreen = ({navigation}: NavProps) => {
+  const [portfolio] = useState('Aggressive');
+  const [roundUpSettings] = useState('Automatic');
+  const [recurring] = useState('$20/monthly');
+  const [beneficiary] = useState('1 Child');
+  const [oneTimeInvestment] = useState('');
 
-  const [data, SetData] = useState([
+  const [data] = useState([
     {
       title: 'Total Balance',
       amount: 4500.0,
@@ -56,7 +58,7 @@ const FamilyPlusScreen = ({navigation}) => {
     },
   ]);
 
-  const [transactions, SetTransactions] = useState([
+  const [transactions] = useState([
     {
       name: 'One Time Investment',
       amount: 20.0,

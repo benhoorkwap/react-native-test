@@ -13,17 +13,16 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 // Screens
 import StockScreen from './screens/StockScreen';
-import FamilyPlusScreen from './screens/FamilyPlusScreen.js';
+import FamilyPlusScreen from './screens/FamilyPlusScreen';
 import PortfolioScreen from './screens/PorfolioScreen';
- 
 
 // Redux
 import store from './redux/store/store';
 import {Provider} from 'react-redux';
 
+import {NavStackParamList} from './utils/types';
 
-
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<NavStackParamList>();
 
 const App: () => Node = () => {
   return (

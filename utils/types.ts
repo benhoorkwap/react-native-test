@@ -105,3 +105,9 @@ export type FamilyCarouselDataType = {
   amount: number;
   currency: string;
 };
+
+export type NavStackParamList = {
+  FamilyPlus: undefined;
+  InvestInStock: undefined;
+  Portfolio: undefined;
+};

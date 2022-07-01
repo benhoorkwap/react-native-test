@@ -25,21 +25,17 @@ export const AccordionItem = ({
            *
            **/
           children.length === undefined ? (
-            <View style={[styles.accordionItem, {flex: 1}]}>{children}</View>
+            <View style={[styles.fillSpace]}>{children}</View>
           ) : (
             children.map((item, index) =>
-              index == 0 ? (
+              index === 0 ? (
                 <View
                   key={`accordion-main-${index}`}
-                  style={[styles.accordionItem, {flex: 1}]}>
+                  style={[styles.fillSpace]}>
                   {item}
                 </View>
               ) : (
-                <View
-                  key={`accordion-sub-${index}`}
-                  style={[styles.accordionItem]}>
-                  {item}
-                </View>
+                <View key={`accordion-sub-${index}`}>{item}</View>
               ),
             )
           )
@@ -76,5 +72,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     height: 65,
   },
-  accordionItem: {},
+  fillSpace: {
+    flex: 1,
+  },
 });

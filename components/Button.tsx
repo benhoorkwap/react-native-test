@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import {StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text, Image} from 'react-native';
 import {ButtonProps, IconButtonProps} from '../utils/types';
 //
 
@@ -26,15 +26,7 @@ export const Button = ({title, variant, onPress, style}: ButtonProps) => {
 export const IconButton = ({icon, onPress}: IconButtonProps) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View
-        style={{
-          borderRadius: 20,
-          backgroundColor: '#f2e1ff',
-          width: 40,
-          height: 40,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+      <View style={styles.iconButton}>
         <Image source={{uri: icon}} style={{width: 24, height: 24}}></Image>
       </View>
     </TouchableOpacity>
@@ -93,9 +85,11 @@ const styles = StyleSheet.create({
   },
 
   iconButton: {
-    width: 27,
-    height: 27,
-    justifyContent: 'center',
+    borderRadius: 20,
+    backgroundColor: '#f2e1ff',
+    width: 40,
+    height: 40,
     alignItems: 'center',
+    justifyContent: 'center',
   },
 });

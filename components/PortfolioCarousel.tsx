@@ -90,16 +90,16 @@ export const PorfolioCarousel = ({data}: CarouselProps<PortfolioDataType>) => {
     );
   };
 
-  const handleViewableItemsChanged = ({viewableItems}) => {
-    viewableItems.forEach(token => {
-      if (token.isViewable) {
-        const item = data[token.index];
-        if (item) {
-          dispatch(setVisiblePortfolio(item));
-        }
-      }
-    });
-  };
+  // const handleViewableItemsChanged = ({viewableItems}) => {
+  //   viewableItems.forEach(token => {
+  //     if (token.isViewable) {
+  //       const item = data[token.index];
+  //       if (item) {
+  //         dispatch(setVisiblePortfolio(item));
+  //       }
+  //     }
+  //   });
+  // };
 
   return (
     <View style={[styles.carouselContainer, {width: windowWidth}]}>
