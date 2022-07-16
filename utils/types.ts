@@ -39,7 +39,7 @@ export type ButtonProps = {
 };
 
 export type IconButtonProps = {
-  icon: string;
+  icon: any;
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
 };
 
@@ -79,7 +79,7 @@ export type RectionTransactionDataType = {
 };
 
 export type TransactionSectionProps<T> = {
-  transactions: T[];
+  data: T[];
 };
 
 // Define an arbitray number of keys whose return type is a number

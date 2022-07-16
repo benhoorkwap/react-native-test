@@ -51,7 +51,7 @@ const FaqsSectionList = () => {
     <TouchableHighlight key={item.id}>
       <View style={styles.listItemContainer}>
         <View style={styles.iconContainer}>
-          <Image source={{uri: item.icon}} style={{width: 12, height: 12}} />
+          <Image source={item.icon} style={{width: 12, height: 12}} />
         </View>
         <Text style={styles.faqItemText}>{item.title}</Text>
       </View>

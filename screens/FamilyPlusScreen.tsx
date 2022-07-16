@@ -154,7 +154,7 @@ const FamilyPlusScreen = ({navigation}: NavProps) => {
 
           {/** Recent Transaction Section */}
           <RowSection marginTop={33}>
-            <RecentTransactionSectionList transactions={transactions} />
+            <RecentTransactionSectionList data={transactions} />
           </RowSection>
 
           {/** Projection Card Section */}

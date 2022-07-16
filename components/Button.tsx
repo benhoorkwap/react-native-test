@@ -27,7 +27,7 @@ export const IconButton = ({icon, onPress}: IconButtonProps) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.iconButton}>
-        <Image source={{uri: icon}} style={{width: 24, height: 24}}></Image>
+        <Image source={icon} style={{width: 24, height: 24}}></Image>
       </View>
     </TouchableOpacity>
   );

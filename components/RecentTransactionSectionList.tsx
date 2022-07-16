@@ -86,7 +86,7 @@ const RecentTransactionSectionList = (
   return (
     <FlatList
       style={{borderRadius: 6, backgroundColor: '#fdfdfd'}}
-      data={transactions}
+      data={transactions.data}
       renderItem={renderItem}
       ListHeaderComponent={ListHeader}
       ListFooterComponent={ListFooter}></FlatList>
